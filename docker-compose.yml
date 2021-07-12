@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+  rsecb:
+    image: rsecb:0.0.1
+    container_name: rsecb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      GUNICORN_WORKER_NUM: 1
+    ports:
+      - 5005:5005
