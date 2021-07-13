@@ -1,0 +1,28 @@
+# Use root/example as user/password credentials
+version: '3.8'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INIT_DB_NAME: test
+      MONGO_INIT_CO_NAME: taptap
+    volumes:
+      - type: bind
+        source: ./my_volumes/etc/mongo
+        target: /etc/mongo
+      - type: bind
+        source: ./my_volumes/data/db
+        target: /data/db
+      - type: bind
+        source: ./my_volumes/ext_files
+        target: /ext_files
+
+    ports:
+      - 27017:27017
+
+
