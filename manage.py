@@ -1,12 +1,13 @@
 from tornado.web import Application, RequestHandler
 from tornado.ioloop import IOLoop
 from rsecb.src.config.runtime_config import RuntimeConfig
-from rsecb.src.adaptor.adaptor_api_controller import AdaptorApiController
+from rsecb.src.adaptor.api_controllers import Predict
+from rsecb.src.adaptor.api_controllers import Stats
 
 
 def make_app():
-    urls = [("/predict", AdaptorApiController.Predict),
-            ("/stats", AdaptorApiController)
+    urls = [("/predict", Predict),
+            ("/stats", Stats)
             ]
     return Application(urls)
 

@@ -1,11 +1,12 @@
 import json
+from abc import ABC
 
 import prometheus_client
 
 from src.adaptor.adaptor_api_controller import AdaptorApiController
 
 
-class Predict(AdaptorApiController):
+class Predict(AdaptorApiController, ABC):
     def __init__(self):
         super().__init__()
 
@@ -19,7 +20,7 @@ class Predict(AdaptorApiController):
         return res
 
 
-class Stats(AdaptorApiController):
+class Stats(AdaptorApiController, ABC):
     def __init__(self):
         super().__init__()
 
