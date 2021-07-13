@@ -5,7 +5,7 @@ from rsecb.src.adaptor.adaptor_api_controller import AdaptorApiController
 
 
 def make_app():
-    urls = [("/predict", AdaptorApiController),
+    urls = [("/predict", AdaptorApiController.Predict),
             ("/stats", AdaptorApiController)
             ]
     return Application(urls)

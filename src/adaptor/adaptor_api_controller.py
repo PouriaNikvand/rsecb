@@ -12,11 +12,3 @@ class AdaptorApiController(RequestHandler, ABC):
         super().__init__()
         self.manager = ApiManager()
 
-    def post(self):
-        data = json.loads(self.request.body)
-        res = self.manager.process_data(data)
-        return res
-
-    def get(self):
-        res = [prometheus_client.generate_latest(self.manager.TL1), ]
-        return res
