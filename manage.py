@@ -1,8 +1,8 @@
 from tornado.web import Application, RequestHandler
 from tornado.ioloop import IOLoop
 from rsecb.src.config.runtime_config import RuntimeConfig
-from rsecb.src.adaptor.api_controllers import Predict
-from rsecb.src.adaptor.api_controllers import Stats
+from rsecb.src.adaptor.predict_handler import Predict
+from rsecb.src.adaptor.predict_handler import Stats
 
 
 def make_app():
