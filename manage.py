@@ -1,4 +1,4 @@
-from tornado.web import Application, RequestHandler
+from tornado.web import Application
 from tornado.ioloop import IOLoop
 from src.config.runtime_config import RuntimeConfig
 from src.adaptor.predict_handler import Predict
@@ -9,7 +9,7 @@ def make_app():
     urls = [("/predict", Predict),
             ("/stats", Stats)
             ]
-    return Application(urls, debug=True)
+    return Application(urls, debug=False)
 
 
 if __name__ == '__main__':

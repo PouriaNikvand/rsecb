@@ -11,5 +11,11 @@ services:
     restart: always
     environment:
       GUNICORN_WORKER_NUM: 1
+      MONGODB_ADDRESS: 'mongodb'
     ports:
-      - 5005:5005
+      - 50005:5005
+
+networks:
+  default:
+    external:
+      name: external-taptap

@@ -13,13 +13,17 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends vim htop
 
 RUN mkdir /app
-WORKDIR /app
+WORKDIR /app/
 
-COPY requirements.txt ./
+COPY requirements.txt /app
 RUN pip3 install -r requirements.txt
 
-COPY rsecb ./rsecb
+COPY src /app/src
+COPY __init__.py /app/
+COPY manage.py /app/
+
 
 # Start processes
-CMD ["python3", "-m","manage.py"]
+#CMD ["python3", "-m","manage.py"]
+CMD ["python3", "manage.py"]
 #CMD ["tail", "-f","/dev/null"]
