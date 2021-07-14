@@ -7,14 +7,7 @@ from src.adaptor.adaptor_api_controller import AdaptorApiController
 
 
 class Predict(AdaptorApiController, ABC):
-    def __init__(self):
-        super().__init__()
-
     def post(self):
-        data = json.loads(self.request.body)
-        res = self.manager.process_data(data)
+        ad_id_list = json.loads(self.request.body)
+        res = self.manager.find_estimated_ctr(ad_id_list)
         return res
-
-    def get(self):
-        pass
-
