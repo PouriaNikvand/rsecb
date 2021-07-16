@@ -10,6 +10,7 @@ class AdaptorApiController(RequestHandler, ABC):
     manager = ApiManager()
 
     def _response(self, res: Union[list, bytes, str]):
+        self.set_header("Content-Type", "text/plain")
         if isinstance(res, list):
             for each in res:
                 self.write(each)

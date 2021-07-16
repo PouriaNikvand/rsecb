@@ -17,3 +17,8 @@ class CTRMongodbDao(BaseMongodbDao):
         return self.find(self.db[RuntimeConfig.CTR_COLLECTION_NAME],
                          {"adId": ad_id},
                          {'_id': 0, 'estimatedCVR': 1})
+
+    def get_ctr_collection(self):
+        return self.find(self.db[RuntimeConfig.CTR_COLLECTION_NAME],
+                         {},
+                         {'_id': 0, "adId": 1, 'estimatedCVR': 1})
