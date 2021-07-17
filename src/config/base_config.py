@@ -1,7 +1,12 @@
 import os
 
+""" Author: Pouria Nikvand """
+
 
 class BaseConfig:
+    """
+    Base configuration for project. it fills the runtime configuration using the env variables
+    """
     @classmethod
     def configure(cls):
         from dotenv import load_dotenv, find_dotenv

@@ -2,6 +2,9 @@
 
 
 class Singleton(type):
+    """
+    This is a Singleton class type for any class object using as a Singleton
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):

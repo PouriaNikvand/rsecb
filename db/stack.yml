@@ -23,6 +23,8 @@ services:
         source: ./my_volumes/ext_files
         target: /ext_files
 
+    expose:
+      - 27017
     ports:
       - 27017:27017
 

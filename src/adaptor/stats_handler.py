@@ -1,12 +1,14 @@
-import json
 from abc import ABC
 import prometheus_client
-from tornado.escape import utf8
-
 from src.adaptor.adaptor_api_controller import AdaptorApiController
+
+""" Author: Pouria Nikvand """
 
 
 class Stats(AdaptorApiController, ABC):
+    """
+    This class moderate the stats path for the api
+    """
     def get(self):
         res = [
             prometheus_client.generate_latest(self.manager.TL1),
