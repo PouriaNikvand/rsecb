@@ -20,8 +20,7 @@ def make_app():
 
 if __name__ == '__main__':
     RuntimeConfig().configure()
-    manager = ApiManager()
-    manager.start()
+    ApiManager()
     app = make_app()
     try:
         app.listen(RuntimeConfig.SERVICE_PORT)

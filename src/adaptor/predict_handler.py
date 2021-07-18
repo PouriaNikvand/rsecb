@@ -1,5 +1,6 @@
 import json
 from abc import ABC
+
 from src.adaptor.adaptor_api_controller import AdaptorApiController
 
 """ Author: Pouria Nikvand """
@@ -22,3 +23,13 @@ class Predict(AdaptorApiController, ABC):
             self.set_status(400)
             res = "bad request"
         return self._response(json.dumps(res))
+
+
+if __name__ == '__main__':
+    from tornado.web import Application
+    import requests
+
+    Application([("/predict", Predict)]).listen(5000)
+    requests.post(url="localhost:5000/predict", json={"adId": [1, 2, 100]})
+    Predict.manager.cached_db = {1: 0.5, 2: 0.8}
+    requests.post(url="localhost:5000/predict", json={"adId": [1, 2, 100]})

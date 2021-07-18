@@ -20,32 +20,33 @@ class BaseMongodbDao:
     """
 
     def __init__(self, host: str, port: str, database_name: str, user: str, key: str, collection_name: str,
-                 serverSelectionTimeoutMS: int):
+                 server_selection_timout: int):
         self.host = host
         self.port = port
         try:
             self.client = MongoClient('mongodb://' + user + ':' + key + '@' + host + ':' + port + '/' + database_name,
                                       authSource="admin",
-                                      serverSelectionTimeoutMS=serverSelectionTimeoutMS)
+                                      serverSelectionTimeoutMS=server_selection_timout)
             self.client.server_info()
-        except errors.ServerSelectionTimeoutError as e:
-            print("Connection Failure to server", e)
 
-        self.db = self.client[database_name]
-        try:
+            self.db = self.client[database_name]
             if database_name not in self.client.list_database_names():
-                raise errors.OperationFailure(errors.PyMongoError)
-        except errors.OperationFailure as e:
-            print("Database Operation Failed or Connection Failure to server", e)
+                raise errors.ConnectionFailure(errors.PyMongoError)
 
-        self.cn = self.db[collection_name]
-        try:
+            self.cn = self.db[collection_name]
             if collection_name not in self.db.list_collection_names():
-                raise errors.OperationFailure(errors.PyMongoError)
-        except errors.OperationFailure as e:
+                raise errors.CollectionInvalid(errors.PyMongoError)
+
+        except errors.ServerSelectionTimeoutError as e:
+            print("ServerSelectionTimeoutErro Connection Failure to server", e)
+
+        except errors.ConnectionFailure as e:
+            print("Database not valid or Connection Failure to server", e)
+
+        except errors.CollectionInvalid as e:
             print("Collection Operation Failed or Connection Failure to server", e)
 
-    def find(self, query_body: dict, return_params: Union[dict, None]):
+    def find(self, query_body: dict, return_params: Union[dict, None] = None) -> Union[list, None]:
         if isinstance(return_params, dict):
             docs = self.cn.find(query_body, return_params)
         else:

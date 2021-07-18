@@ -21,7 +21,7 @@ class CTRMongodbDao(BaseMongodbDao):
             user=RuntimeConfig.MONGODB_USER,
             key=RuntimeConfig.MONGODB_KEY,
             collection_name=RuntimeConfig.CTR_COLLECTION_NAME,
-            serverSelectionTimeoutMS=RuntimeConfig.SERVER_SELECTOPM_TIMEOUT
+            server_selection_timout=RuntimeConfig.SERVER_SELECTOPM_TIMEOUT
         )
 
     def get_ctr_ad_id(self, ad_id: int):

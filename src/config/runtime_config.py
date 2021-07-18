@@ -27,9 +27,9 @@ class RuntimeConfig(BaseConfig):
     MONGODB_DB_NAME = 'test'
     CTR_COLLECTION_NAME = 'taptap'
     SERVICE_PORT = 5005
-    CACHE_SLEEP_TIME = 1
+    CACHE_SLEEP_TIME = 60
     SERVER_SELECTOPM_TIMEOUT = 1
-    DEFAULT_NOT_FOUND_CTR_VALUE = -1
+    DEFAULT_NOT_FOUND_CTR_VALUE = {'estimatedCVR': -1}
 
 
 if __name__ == "__main__":
