@@ -67,6 +67,21 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
+  mongodbexporter:
+    image: bitnami/mongodb-exporter:latest
+    container_name: mongodbexporter
+    command:
+      - '--mongodb.uri=mongodb://root:example@mongodb:27017/admin?'
+      - '--mongodb.collstats-colls=test.taptap'
+    restart: unless-stopped
+    expose:
+      - 9216
+    ports:
+      - 9216:9216
+    labels:
+      org.label-schema.group: "monitoring"
+
+
   alertmanager:
     image: prom/alertmanager:v0.21.0
     container_name: alertmanager
